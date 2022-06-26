@@ -482,21 +482,21 @@ This warning occurs when you use a service principal to log into Azure. The serv
 1. Sign in into Azure CLI using your user account. Fetch the Object ID of the Azure AD application used by Azure Arc service:
 
     ```azurecli
-    az ad sp show --id bc313c14-388c-4e7d-a58e-70017303ee3b --query objectId -o tsv
+    az ad sp show --id bc313c14-388c-4e7d-a58e-70017303ee3b --query id -o tsv
     ```
 
-1. Sign in into Azure CLI using the service principal. Use the `<objectId>` value from above step to enable custom locations on the cluster:
+1. Sign in into Azure CLI using the service principal. Use the `<id>` value from above step to enable custom locations on the cluster:
 
    * To enable custom locations when connecting the cluster to Arc, run the following command:
 
      ```azurecli
-     az connectedk8s connect -n <cluster-name> -g <resource-group-name> --custom-locations-oid <objectId>   
+     az connectedk8s connect -n <cluster-name> -g <resource-group-name> --custom-locations-oid <id>   
      ```
 
    * To enable custom locations on an existing Azure Arc-enabled Kubernetes cluster, run the following command:
 
     ```azurecli
-    az connectedk8s enable-features -n <cluster-name> -g <resource-group-name> --custom-locations-oid <objectId> --features cluster-connect custom-locations
+    az connectedk8s enable-features -n <cluster-name> -g <resource-group-name> --custom-locations-oid <id> --features cluster-connect custom-locations
     ```
 
 ## Azure Arc-enabled Open Service Mesh
